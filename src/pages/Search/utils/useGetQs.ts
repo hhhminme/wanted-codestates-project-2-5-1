@@ -1,10 +1,8 @@
-import { useLocation } from 'react-router';
-import { parseQueryString } from '../utils';
+import { useSearchParams } from 'react-router-dom';
 
 const useGetQs = () => {
-  const { search } = useLocation();
-
-  const { asideKey } = parseQueryString(search);
+  const [searchParams] = useSearchParams();
+  const asideKey = searchParams.get('target');
   return { asideKey };
 };
 
