@@ -12,7 +12,6 @@ export const HomeLogo = style.img`
   left: 30px;
   max-width: 150px;
   width: 20vw;
-
 `;
 
 export const HomeBox = style.div`
@@ -22,9 +21,6 @@ export const HomeBox = style.div`
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 500px;
-  width: 80vw;
-
 `;
 
 export const HomeTitle = style.div`
