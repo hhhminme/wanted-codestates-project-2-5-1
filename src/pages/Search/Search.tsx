@@ -4,11 +4,10 @@ import Pagination from '../../components/Pagination';
 import useGetQs from './utils/useGetQs';
 
 const Search = () => {
-  const { asideKey } = useGetQs();
-
+  const { target, option } = useGetQs('target', 'option');
   return (
     <div>
-      {asideKey && <Aside asideKey={asideKey} />}
+      {option === 'code' && target && <Aside asideKey={target} />}
       <Pagination />
     </div>
   );
