@@ -2,16 +2,18 @@ import { filterCategoryC1 } from './utils/filterCategoryC1';
 import { useGetAsideItem } from './utils/useGetAsideItem';
 import * as S from './style';
 import { transAttribute } from './utils/transAttribute';
+import LoadingAside from './LoadingAside';
+import NoData from './NoData';
 interface Aside {
   asideKey: string;
 }
 const Aside = ({ asideKey }: Aside) => {
   const [data, isLoading] = useGetAsideItem(asideKey);
-
+  console.log(data, isLoading);
   return (
     <S.Wrapper>
-      {isLoading && '로딩 중입니다.'}
-      {!isLoading && !data && '데이터가 존재하지 않습니다.'}
+      {isLoading && <LoadingAside />}
+      {!isLoading && !data && <NoData>🥲데이터가 존재하지 않습니다🥲</NoData>}
       {!isLoading && data && (
         <>
           <S.Img src={data.image_url} />
