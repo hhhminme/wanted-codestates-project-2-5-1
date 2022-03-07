@@ -3,6 +3,8 @@ import style from 'styled-components';
 export const SearchBarWrapper = style.div`
   display: flex; 
   flex-direction: column;
+  max-width: 700px;
+  width: 80vw;
 `;
 export const SearchBar = style.div`
   display: flex;
@@ -33,6 +35,7 @@ export const SearchBarButton = style.button`
   color: white;
   border-radius: 0 20px 20px 0;
   border: none;
+  font-size: 14px;
   &:hover {
     cursor: pointer;
     background: #b081ff;
@@ -41,14 +44,16 @@ export const SearchBarButton = style.button`
 
 export const SearchBarOption = style.div`
   display: flex;
+  align-items: center;
+  font-size: 14px;
 
   label {
-    margin-right: 10px;
+    margin: 0 10px 0 5px;
+  }
+  &>*:hover{
+    cursor: pointer;
   }
 `;
 
 export const RadioInput = style.input`
-  &[type='radio']:checked {
-    apperance: none;
-  }
 `;

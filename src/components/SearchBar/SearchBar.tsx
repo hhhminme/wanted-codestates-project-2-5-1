@@ -8,6 +8,13 @@ const SearchBar = () => {
   const [userInput, setUserInput] = useState('');
   const navigation = useNavigate();
 
+  const handleKeyboardControl = (event: any) => {
+    console.log(event.keyCode);
+    if (event.keyCode === 13) {
+      navigation(`/search?option=${searchOption}&target=${userInput}`);
+    }
+  };
+
   return (
     <S.SearchBarWrapper>
       <S.SearchBar>
@@ -17,6 +24,7 @@ const SearchBar = () => {
           onChange={(event) => {
             setUserInput(event.target.value);
           }}
+          onKeyUp={(event) => handleKeyboardControl(event)}
         />
         <S.SearchBarButton
           onClick={() => navigation(`/search?option=${searchOption}&target=${userInput}`)}
@@ -25,7 +33,7 @@ const SearchBar = () => {
         </S.SearchBarButton>
       </S.SearchBar>
       <S.SearchBarOption>
-        <input
+        <S.RadioInput
           type="radio"
           name="search"
           id="keyword"
@@ -34,7 +42,7 @@ const SearchBar = () => {
           onChange={(event) => setSearchOption(event.target.value)}
         />
         <label htmlFor="keyword">Keyword 검색</label>
-        <input
+        <S.RadioInput
           type="radio"
           name="search"
           id="code"
