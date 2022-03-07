@@ -4,7 +4,7 @@ import { Region } from '../../../api/getAllAsideItemApi/types';
 import { findAsideItem } from './findAsideItem';
 
 export const useGetAsideItem = (asideKey: string): [Region | undefined, boolean] => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [asideItem, setAsideItem] = useState<Region | undefined>(undefined);
 
   const callApi = async () => {
