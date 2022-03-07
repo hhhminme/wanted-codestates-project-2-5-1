@@ -1,9 +1,14 @@
 import { useSearchParams } from 'react-router-dom';
 
-const useGetQs = () => {
+interface ParseQs {
+  [x: string]: string | null;
+}
+const useGetQs = (...args: string[]) => {
   const [searchParams] = useSearchParams();
-  const asideKey = searchParams.get('target');
-  return { asideKey };
+  return args.reduce((acc: ParseQs, cur: string) => {
+    acc[cur] = searchParams.get(cur);
+    return acc;
+  }, {});
 };
 
 export default useGetQs;
