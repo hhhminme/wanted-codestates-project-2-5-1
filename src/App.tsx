@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router';
-import Search from './pages/Search/Search';
+import Search from './pages/Search';
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/search" element={Search} />
+      <Route path="/search" element={<Search />} />
     </Routes>
   );
 };
