@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router';
 
 import Home from './pages/Home';
-import Search from './pages/Search/Search';
+import Search from './pages/Search';
 
 const App = () => {
   return (
