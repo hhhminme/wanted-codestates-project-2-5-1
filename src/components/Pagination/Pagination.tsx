@@ -78,6 +78,10 @@ const Pagination = () => {
   }, []);
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [posts]);
+
+  useEffect(() => {
     // production.json 값이 없음
     if (!prodData) {
       console.log(prodData);

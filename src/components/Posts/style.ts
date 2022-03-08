@@ -21,6 +21,7 @@ export const ItemWrap = styled.div`
 
 export const ItemImageBox = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
   aspect-ratio: 0.7;
   overflow: hidden;
