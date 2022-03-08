@@ -10,9 +10,6 @@ interface Props {
 }
 
 const PaginationBtn = ({ totalPages, currentPage, setCurrentPage }: Props) => {
-  useEffect(() => {
-    console.log(totalPages);
-  });
   const [pageState, setPageState] = useState<Array<number>>([]);
 
   useEffect(() => {
@@ -20,7 +17,6 @@ const PaginationBtn = ({ totalPages, currentPage, setCurrentPage }: Props) => {
     new Array(totalPages).fill(0).forEach((num, index) => {
       arr.push(index + 1);
     });
-    console.log(arr);
     setPageState(arr);
   }, [currentPage]);
 
