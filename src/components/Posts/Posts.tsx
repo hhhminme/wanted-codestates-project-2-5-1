@@ -39,7 +39,7 @@ const Posts = ({ posts, loading }: Props) => {
         </>
       );
     }
-    return <>productName</>;
+    return <>{productName}</>;
   };
 
   return (
