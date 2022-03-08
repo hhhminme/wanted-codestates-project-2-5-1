@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 
-import * as S from 'styled-components';
+import * as S from './style';
 import Posts from '../Posts';
 import PaginationBtn from '../PaginationBtn';
 
@@ -18,7 +18,7 @@ const Pagination = () => {
   const [posts, setPosts] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(70);
+  const [postsPerPage, setPostsPerPage] = useState(60);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const option = searchParams.get('option');
@@ -49,6 +49,9 @@ const Pagination = () => {
           break;
         case 'code':
           console.log(option + 'keyword!');
+          if (target) {
+            fetchKeywordData(target);
+          }
           break;
         default:
           console.log('err');
@@ -64,14 +67,16 @@ const Pagination = () => {
   };
 
   return (
-    <div>
+    <S.PostsWrapper>
       <Posts posts={currentPosts(posts)} loading={loading}></Posts>
-      <PaginationBtn
-        postsPerPage={postsPerPage}
-        totalPosts={posts.length}
-        paginate={setCurrentPage}
-      />
-    </div>
+      {posts.length && (
+        <PaginationBtn
+          totalPages={Math.ceil(posts.length / postsPerPage)}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+    </S.PostsWrapper>
   );
 };
 
