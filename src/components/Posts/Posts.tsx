@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import * as S from './style';
 import LoadingPost from './LoadingPost';
@@ -15,10 +16,32 @@ interface Props {
   posts: Data[];
   loading: boolean;
 }
+interface productType {
+  productName: string;
+}
 const Posts = ({ posts, loading }: Props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const option = searchParams.get('option');
+  const target = searchParams.get('target');
+
   const priceWithFormat = (price: number) => {
     return price.toLocaleString('ko-KR');
   };
+
+  const ImpactTarget = ({ productName }: productType) => {
+    if (option === 'keyword' && typeof target === 'string') {
+      const splitWithTarget = productName.split(target);
+      return (
+        <>
+          {splitWithTarget.map((part, index) => {
+            return part === '' ? <mark key={index}>{target}</mark> : part;
+          })}
+        </>
+      );
+    }
+    return <>productName</>;
+  };
+
   return (
     <>
       <S.SearchList>
@@ -36,7 +59,9 @@ const Posts = ({ posts, loading }: Props) => {
                 />
               </S.ItemImageBox>
               <S.ItemInfoBox>
-                <S.ItemTitle>{post.name}</S.ItemTitle>
+                <S.ItemTitle>
+                  <ImpactTarget productName={post.name} />
+                </S.ItemTitle>
                 <S.ItemCost>{priceWithFormat(post.price)} 원</S.ItemCost>
               </S.ItemInfoBox>
             </S.ItemWrap>

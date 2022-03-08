@@ -15,7 +15,6 @@ interface Props {
 const Pagination = ({ posts, loading }: Props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(60);
-
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
   const currentPosts = (tmp: ProdData[]) => {
