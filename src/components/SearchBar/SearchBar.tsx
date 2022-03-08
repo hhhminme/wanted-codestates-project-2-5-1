@@ -9,7 +9,6 @@ const SearchBar = () => {
   const navigation = useNavigate();
 
   const handleKeyboardControl = (event: any) => {
-    console.log(event.keyCode);
     if (event.keyCode === 13) {
       navigation(`/search?option=${searchOption}&target=${userInput}`);
     }

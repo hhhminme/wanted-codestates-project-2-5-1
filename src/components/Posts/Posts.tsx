@@ -14,17 +14,25 @@ interface Props {
   loading: boolean;
 }
 const Posts = ({ posts, loading }: Props) => {
+  const priceWithFormat = (price: number) => {
+    return price.toLocaleString('ko-KR');
+  };
   return (
     <>
       {loading && <div>loading...</div>}
-      <ul>
+      <S.SearchList>
         {posts.map((post) => (
           <S.ItemWrap key={post.product_code}>
-            <S.ItemImg src={post.image_url} />
-            <p>{post.price}</p>
+            <S.ItemImageBox>
+              <S.ItemImg src={post.image_url} />
+            </S.ItemImageBox>
+            <S.ItemInfoBox>
+              <S.ItemTitle>{post.name}</S.ItemTitle>
+              <S.ItemCost>{priceWithFormat(post.price)} 원</S.ItemCost>
+            </S.ItemInfoBox>
           </S.ItemWrap>
         ))}
-      </ul>
+      </S.SearchList>
     </>
   );
 };

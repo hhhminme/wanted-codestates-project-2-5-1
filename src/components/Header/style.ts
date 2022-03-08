@@ -1,6 +1,6 @@
-import style from 'styled-components';
+import styled from 'styled-components';
 
-export const HeaderWrapper = style.div`
+export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,17 +9,17 @@ export const HeaderWrapper = style.div`
   left: 0;
   width: 100%;
   height: 100px;
-  margin: 10px auto;
-  
+  padding: 10px 0;
+  background: white;
 `;
 
-export const ImageBox = style.div`
+export const ImageBox = styled.div`
   height: 50px;
   display: flex;
   margin-right: 30px;
 `;
 
-export const HeaderImage = style.img`
+export const HeaderImage = styled.img`
   &:hover {
     cursor: pointer;
   }
