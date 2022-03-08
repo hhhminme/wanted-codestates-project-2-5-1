@@ -23,6 +23,7 @@ const Posts = ({ posts, loading }: Props) => {
     <>
       <S.SearchList>
         {loading && <LoadingPost />}
+        {posts.length == 0 && <S.ErrDiv>검색 결과가 없습니다.</S.ErrDiv>}
         {!loading &&
           posts.map((post) => (
             <S.ItemWrap key={post.product_code}>
