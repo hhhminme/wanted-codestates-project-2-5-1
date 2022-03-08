@@ -9,7 +9,7 @@ interface Aside {
 }
 const Aside = ({ asideKey }: Aside) => {
   const [data, isLoading] = useGetAsideItem(asideKey);
-  console.log(data, isLoading);
+
   return (
     <S.Wrapper>
       {isLoading && <LoadingAside />}
