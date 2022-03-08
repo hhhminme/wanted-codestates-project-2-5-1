@@ -54,3 +54,9 @@ export const ItemCost = styled.p`
   text-align: right;
   color: #8e4ff8;
 `;
+
+export const Hr = styled.hr`
+  margin: 10px 0px;
+  border-top: none;
+  border-bottom: 0.5px solid lightgray;
+`;

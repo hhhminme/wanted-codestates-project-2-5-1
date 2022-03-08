@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  width: inherit;
   @keyframes skeleton--loading {
     0% {
       background-position: 100%;

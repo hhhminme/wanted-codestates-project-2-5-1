@@ -2,24 +2,31 @@ import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100px;
-  padding: 10px 0;
+  padding: 20px 10px 10px 10px;
   background: white;
+
+  @media screen and (max-width: 550px) {
+    flex-direction: column;
+  }
 `;
 
 export const ImageBox = styled.div`
-  height: 50px;
+  height: 7vh;
   display: flex;
-  margin-right: 30px;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 550px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const HeaderImage = styled.img`
+  height: 80%;
   &:hover {
     cursor: pointer;
   }

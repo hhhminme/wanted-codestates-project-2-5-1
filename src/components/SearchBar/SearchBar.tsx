@@ -7,10 +7,14 @@ const SearchBar = () => {
   const [searchOption, setSearchOption] = useState('keyword');
   const [userInput, setUserInput] = useState('');
   const navigation = useNavigate();
-
   // 한글 영어만
   const regexKeyword = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|]+$/;
   const regexCode = /^[0-9]+$/;
+  const navigateToSearch = () => {
+    if (userInput !== '') {
+      navigation(`/search?option=${searchOption}&target=${userInput}`);
+    }
+  };
 
   const handleKeyboardControl = (event: any) => {
     if (event.keyCode === 13) {
@@ -48,11 +52,7 @@ const SearchBar = () => {
           onChange={(e) => handleChangeInput(e)}
           onKeyUp={(event) => handleKeyboardControl(event)}
         />
-        <S.SearchBarButton
-          onClick={() => navigation(`/search?option=${searchOption}&target=${userInput}`)}
-        >
-          검색
-        </S.SearchBarButton>
+        <S.SearchBarButton onClick={() => navigateToSearch()}>검색</S.SearchBarButton>
       </S.SearchBar>
     </S.SearchBarWrapper>
   );

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import * as S from './style';
+import LoadingPost from './LoadingPost';
 
 type Data = {
   product_code: number;
@@ -19,19 +21,25 @@ const Posts = ({ posts, loading }: Props) => {
   };
   return (
     <>
-      {loading && <div>loading...</div>}
       <S.SearchList>
-        {posts.map((post) => (
-          <S.ItemWrap key={post.product_code}>
-            <S.ItemImageBox>
-              <S.ItemImg src={post.image_url} />
-            </S.ItemImageBox>
-            <S.ItemInfoBox>
-              <S.ItemTitle>{post.name}</S.ItemTitle>
-              <S.ItemCost>{priceWithFormat(post.price)} 원</S.ItemCost>
-            </S.ItemInfoBox>
-          </S.ItemWrap>
-        ))}
+        {loading && <LoadingPost />}
+        {!loading &&
+          posts.map((post) => (
+            <S.ItemWrap key={post.product_code}>
+              <S.ItemImageBox>
+                <S.ItemImg
+                  src={post.image_url}
+                  onClick={() => {
+                    document.location = post.image_url;
+                  }}
+                />
+              </S.ItemImageBox>
+              <S.ItemInfoBox>
+                <S.ItemTitle>{post.name}</S.ItemTitle>
+                <S.ItemCost>{priceWithFormat(post.price)} 원</S.ItemCost>
+              </S.ItemInfoBox>
+            </S.ItemWrap>
+          ))}
       </S.SearchList>
     </>
   );
