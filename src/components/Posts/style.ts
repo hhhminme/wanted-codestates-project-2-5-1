@@ -61,3 +61,8 @@ export const Hr = styled.hr`
   border-top: none;
   border-bottom: 0.5px solid lightgray;
 `;
+
+export const ErrDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;

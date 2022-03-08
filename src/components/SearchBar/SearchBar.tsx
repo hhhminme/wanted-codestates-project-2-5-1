@@ -26,23 +26,18 @@ const SearchBar = () => {
   };
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(regexImg.test(e.target.value));
-
     // 키워드 검색일 경우
     if (regexKeyword.test(e.target.value)) {
-      console.log('키워드 검색');
       setSearchOption('keyword');
       setUserInput(e.target.value);
     }
     // url 일때
     else if (regexImg.test(e.target.value)) {
-      console.log('url 검색');
       setSearchOption('code');
       setUserInput(e.target.value);
     }
     // product_id 검색 일때
     else if (regexCode.test(e.target.value)) {
-      console.log('id 검색');
       setSearchOption('code');
       setUserInput(e.target.value);
     }
