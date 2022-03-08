@@ -9,7 +9,10 @@ const SearchBar = () => {
   const navigation = useNavigate();
   // 한글 영어만
   const regexKeyword = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|]+$/;
+  // 숫자만
   const regexCode = /^[0-9]+$/;
+  //Img_url
+  const regexImg = /^[A-Z]+-+[0-9]+$/;
   const navigateToSearch = () => {
     if (userInput !== '') {
       navigation(`/search?option=${searchOption}&target=${userInput}`);
@@ -23,6 +26,8 @@ const SearchBar = () => {
   };
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(regexImg.test(e.target.value));
+
     // 키워드 검색일 경우
     if (regexKeyword.test(e.target.value)) {
       console.log('키워드 검색');
@@ -30,7 +35,7 @@ const SearchBar = () => {
       setUserInput(e.target.value);
     }
     // url 일때
-    else if (e.target.value.includes('https://static.pxl.ai/problem/images')) {
+    else if (regexImg.test(e.target.value)) {
       console.log('url 검색');
       setSearchOption('code');
       setUserInput(e.target.value);
