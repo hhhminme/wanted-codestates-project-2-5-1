@@ -7,10 +7,44 @@ const SearchBar = () => {
   const [searchOption, setSearchOption] = useState('keyword');
   const [userInput, setUserInput] = useState('');
   const navigation = useNavigate();
+  // 한글 영어만
+  const regexKeyword = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|]+$/;
+  // 숫자만
+  const regexCode = /^[0-9]+$/;
+  //Img_url
+  const regexImg = /^[A-Z]+-+[0-9]+$/;
+  const navigateToSearch = () => {
+    if (userInput !== '') {
+      navigation(`/search?option=${searchOption}&target=${userInput}`);
+    }
+  };
 
   const handleKeyboardControl = (event: any) => {
     if (event.keyCode === 13) {
       navigation(`/search?option=${searchOption}&target=${userInput}`);
+    }
+  };
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(regexImg.test(e.target.value));
+
+    // 키워드 검색일 경우
+    if (regexKeyword.test(e.target.value)) {
+      console.log('키워드 검색');
+      setSearchOption('keyword');
+      setUserInput(e.target.value);
+    }
+    // url 일때
+    else if (regexImg.test(e.target.value)) {
+      console.log('url 검색');
+      setSearchOption('code');
+      setUserInput(e.target.value);
+    }
+    // product_id 검색 일때
+    else if (regexCode.test(e.target.value)) {
+      console.log('id 검색');
+      setSearchOption('code');
+      setUserInput(e.target.value);
     }
   };
 
@@ -20,37 +54,11 @@ const SearchBar = () => {
         <S.SearchBarInput
           type="text"
           placeholder="검색어를 입력하세요..."
-          onChange={(event) => {
-            setUserInput(event.target.value);
-          }}
+          onChange={(e) => handleChangeInput(e)}
           onKeyUp={(event) => handleKeyboardControl(event)}
         />
-        <S.SearchBarButton
-          onClick={() => navigation(`/search?option=${searchOption}&target=${userInput}`)}
-        >
-          검색
-        </S.SearchBarButton>
+        <S.SearchBarButton onClick={() => navigateToSearch()}>검색</S.SearchBarButton>
       </S.SearchBar>
-      <S.SearchBarOption>
-        <S.RadioInput
-          type="radio"
-          name="search"
-          id="keyword"
-          value="keyword"
-          checked={searchOption === 'keyword'}
-          onChange={(event) => setSearchOption(event.target.value)}
-        />
-        <label htmlFor="keyword">Keyword 검색</label>
-        <S.RadioInput
-          type="radio"
-          name="search"
-          id="code"
-          value="code"
-          checked={searchOption === 'code'}
-          onChange={(event) => setSearchOption(event.target.value)}
-        />
-        <label htmlFor="code">제품 코드검색</label>
-      </S.SearchBarOption>
     </S.SearchBarWrapper>
   );
 };

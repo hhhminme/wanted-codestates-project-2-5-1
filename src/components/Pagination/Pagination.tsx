@@ -45,6 +45,8 @@ const Pagination = () => {
   const option = searchParams.get('option');
   const target = searchParams.get('target');
 
+  const regexImg = /^[A-Z]+-+[0-9]+$/;
+
   const fetchProdData = async () => {
     setLoading(true);
     try {
@@ -106,12 +108,12 @@ const Pagination = () => {
       case 'code':
         if (target) {
           // url 검색 일때
-          if (target.includes('https://static.pxl.ai/problem/images')) {
+          if (regexImg.test(target)) {
             const filteredArr: ProdData[] = [];
             let prodName = '';
             // url에 해당하는 아이템의 name을 찾는다.
             prodData.map((value) => {
-              if (value.image_url === target) {
+              if (value.image_url.includes(target)) {
                 prodName = value.name;
               }
             });
@@ -163,7 +165,7 @@ const Pagination = () => {
   return (
     <S.PostsWrapper>
       <Posts posts={currentPosts(posts)} loading={loading}></Posts>
-      {posts.length && (
+      {posts.length > 0 && (
         <PaginationBtn
           totalPages={Math.ceil(posts.length / postsPerPage)}
           currentPage={currentPage}

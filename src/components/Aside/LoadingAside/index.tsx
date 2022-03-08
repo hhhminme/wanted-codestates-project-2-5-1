@@ -1,5 +1,5 @@
 import Skeleton from '../../Skeleton';
-import { Hr, Wrapper } from '../style';
+import { Hr } from '../style';
 import { AttrSkel } from './style';
 
 const LoadingAside = () => {
