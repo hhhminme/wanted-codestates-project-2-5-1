@@ -13,7 +13,7 @@ const Aside = ({ asideKey }: Aside) => {
   return (
     <S.Wrapper>
       {isLoading && <LoadingAside />}
-      {!isLoading && !data && <NoData>🥲데이터가 존재하지 않습니다🥲</NoData>}
+      {!isLoading && !data && <></>}
       {!isLoading && data && (
         <>
           <S.Img src={data.image_url} />
