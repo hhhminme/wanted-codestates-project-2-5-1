@@ -69,7 +69,13 @@ const PaginationBtn = ({ totalPages, currentPage, setCurrentPage }: Props) => {
           </S.PagiButton>
           {pageState.map((num) => (
             <li key={num}>
-              <S.PagiButton onClick={() => setCurrentPage(num)} isTarget={currentPage === num}>
+              <S.PagiButton
+                onClick={() => {
+                  setCurrentPage(num);
+                  window.scrollTo(0, 0);
+                }}
+                isTarget={currentPage === num}
+              >
                 {num}
               </S.PagiButton>
             </li>
