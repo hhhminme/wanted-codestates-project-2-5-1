@@ -13,7 +13,6 @@ const PaginationBtn = ({ totalPages, currentPage, setCurrentPage }: Props) => {
   const [pageState, setPageState] = useState<Array<number>>([]);
 
   useEffect(() => {
-    console.log(currentPage);
     const arr: number[] = [];
     new Array(totalPages).fill(0).forEach((num, index) => {
       arr.push(index + 1);
