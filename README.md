@@ -1,10 +1,15 @@
 # 원티드 프리온보딩 프론트엔드 코스 - 오드컨셉
-[✨결과물 보러가기✨]()
+[✨결과물 보러가기✨](https://wanted-codestates-project-2-5-1.vercel.app/)
+
+바로가기 링크  
+1. [동진 - Aside 컴포넌트 구현](#동진---aside-컴포넌트-구현)
+1. [상우 - 검색 및 페이지네이션 구현](#상우---검색-및-페이지네이션-구현)
+1. [민 - ]()
 
 
-## [동진] - Aside 컴포넌트 구현 
+## [동진] - Aside 컴포넌트 구현
 
-## 요구사항
+## 요구 사항1
 
 1. queryString을 통하여 키워드를 가져온다.
 2. 이때, img_url인지 product_code인지 알 수 없다.
@@ -123,3 +128,75 @@ skeleton의 경우에는 앞으로 보게 될 화면의 구조를 직관적으�
 따라서 하나의 기능만을 가질 수 있도록 노력했습니다.
 
 또한 사람들이 index.tsx를 보았을 때 원하는것은 마크업이라 생각합니다. 따라서 tsx에는 마크업만 들어갈 수 있도록 노력하였고, 로직은 훅으로 분리하였습니다.
+
+## [상우] - 검색 및 페이지네이션 구현
+### 요구사항
+	1. 검색 컴포넌트
+	2. 검색 쿼리 전달
+	3. 페이지네이션
+	4. 검색어 강조
+
+### 구현 방법
+#### 1. 검색 컴포넌트  
+검색 컴포넌트는 메인, 검색  페이지에서 사용되기 때문에 컴포넌트를 따로 만들어 재사용성을 높이고 싶었습니다.  검색 공간을 확보하기 위해 min-width를 통해 컴포넌트의 최소 너비를 제한하였고, 그 외에는 화면의 넓이에 반응하도록 제작하였습니다.
+UX적인 측면을 고려하여 Enter키를 통한 검색을 가능하게 하였고,
+검색어가 없는 경우에 대해서는 반응하지 않도록 처리해주었습니다.
+```tsx
+const navigateToSearch = () => {
+    if (userInput !== '') {
+      navigation(`/search?option=${searchOption}&target=${userInput}`);
+    }
+  };
+
+  const handleKeyboardControl = (event: any) => {
+    if (event.keyCode === 13) {
+      navigateToSearch();
+    }
+  };
+```
+
+#### 2. 검색 쿼리 전달  
+요구사항의  'url에 검색 쿼리에 사용한 데이터가 직관적으로 보여야 합니다'에 따라 url에 querystring으로 검색어와 검색 타입(keyword 또는 url/code) 을 다음과 같이 넘겨주었습니다.
+```
+/search?option=keyword&target=조끼
+```
+ #### 3. 페이지네이션  
+페이지네이션을 구현하면서 라이브러리를 사용해서 구현 가능하지만, 허민 님과 함께 구현해보는 것을 목표로 제작하였습니다. 허민 님께서 페이지를 구분해주셨고, 저는 아래 페이지네이션을 조작할 수 있는 인터페이스를 제작하였습니다.
+허민 님께서 전달해주신 페이지 정보로 페이지네이션 state를 만들어 페이지네이션 버튼의 상태를 관리해주었습니다. handlePagination() 메소드를 통해 화면에 보여질 페이지를 조작할 수 있도록 했습니다.
+```tsx
+const [pageState, setPageState] = useState<Array<number>>([]);
+
+  useEffect(() => {
+    const arr: number[] = [];
+    new Array(totalPages).fill(0).forEach((num, index) => {
+      arr.push(index + 1);
+    });
+    setPageState(arr);
+  }, [currentPage, totalPages]);
+
+  const handlePagination = (number: number) => {
+    if (number > 0 && number < totalPages + 1) {
+      setCurrentPage(number);
+      window.scrollTo(0, 0);
+    }
+  };
+
+```
+#### 4. 검색어 강조
+검색어 강조를 위해 제품 이름에서 검색어를 추출해내는 과정이 필요했습니다. 제가 구현한 방법은 검색어(target)으로 제품 이름을 .split() 하여 배열을 우선 만들어주었습니다. split 배열을 .map() 함수를 통해 빈 문자열이 들어올 경우 검색어로 간주하여 <mark>태그로 감싸서 전달해주었습니다. 그 외의 문자열은 일반 문자열로 넘겨 주었습니다.
+```tsx
+const ImpactTarget = ({ productName }: productType) => {
+    if (option === 'keyword' && typeof target === 'string') {
+      const splitWithTarget = productName.split(target);
+      return (
+	<>
+	  {splitWithTarget.map((part, index) => {
+	    return part === '' ? <mark key={index}>{target}</mark> : part;
+	  })}
+	</>
+      );
+    }
+    return <>{productName}</>;
+  };
+```
+
