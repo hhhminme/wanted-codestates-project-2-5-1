@@ -18,7 +18,7 @@ const PaginationBtn = ({ totalPages, currentPage, setCurrentPage }: Props) => {
       arr.push(index + 1);
     });
     setPageState(arr);
-  }, [currentPage]);
+  }, [currentPage, totalPages]);
 
   const handlePagination = (number: number) => {
     if (number > 0 && number < totalPages + 1) {
