@@ -22,6 +22,10 @@ const Pagination = ({ posts, loading }: Props) => {
     return currentPosts;
   };
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [posts]);
+
   return (
     <S.PostsWrapper>
       <Posts posts={currentPosts(posts)} loading={loading}></Posts>
