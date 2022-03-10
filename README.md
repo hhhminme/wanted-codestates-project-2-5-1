@@ -1,5 +1,5 @@
 # 원티드 프리온보딩 프론트엔드 코스 - 오드컨셉
-[✨결과물 보러가기✨]https://wanted-codestates-project-2-5-1.netlify.app/)
+[✨결과물 보러가기✨](https://wanted-codestates-project-2-5-1.netlify.app/)
 
 바로가기 링크  
 1. [동진 - Aside 컴포넌트 구현](#동진---aside-컴포넌트-구현)
