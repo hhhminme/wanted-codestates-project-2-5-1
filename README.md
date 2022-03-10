@@ -1,5 +1,5 @@
 # 원티드 프리온보딩 프론트엔드 코스 - 오드컨셉
-[✨결과물 보러가기✨](https://wanted-codestates-project-2-5-1.vercel.app/)
+[✨결과물 보러가기✨](https://lucid-wiles-7ae8e7.netlify.app/)
 
 바로가기 링크  
 1. [동진 - Aside 컴포넌트 구현](#동진---aside-컴포넌트-구현)
@@ -8,6 +8,10 @@
 
 
 ## [동진] - Aside 컴포넌트 구현
+
+
+https://user-images.githubusercontent.com/70435257/157583917-89e184dd-ca23-4af4-8ff0-69246927de0a.mp4
+
 
 ## 요구 사항1
 
