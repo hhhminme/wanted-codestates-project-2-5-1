@@ -5,7 +5,11 @@ import * as S from './style';
 import logo from '../../assets/img/logo_pxl_b.png';
 import SearchBar from '../SearchBar';
 
-const Header = () => {
+type loading = {
+  loading: boolean;
+};
+
+const Header = ({ loading }: loading) => {
   const navigation = useNavigate();
   return (
     <S.HeaderWrapper>
@@ -17,7 +21,7 @@ const Header = () => {
           }}
         />
       </S.ImageBox>
-      <SearchBar />
+      <SearchBar loading={loading} />
     </S.HeaderWrapper>
   );
 };
