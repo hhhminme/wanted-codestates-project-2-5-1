@@ -3,7 +3,7 @@ import { useGetAsideItem } from './utils/useGetAsideItem';
 import * as S from './style';
 import { transAttribute } from './utils/transAttribute';
 import LoadingAside from './LoadingAside';
-import NoData from './NoData';
+
 interface Aside {
   asideKey: string;
 }

@@ -20,7 +20,7 @@ interface productType {
   productName: string;
 }
 const Posts = ({ posts, loading }: Props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const option = searchParams.get('option');
   const target = searchParams.get('target');
 
