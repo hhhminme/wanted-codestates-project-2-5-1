@@ -106,7 +106,7 @@ const Search = () => {
 
   return (
     <div>
-      <Header />
+      <Header loading={loading} />
       <S.SearchWrapper>
         {option === 'code' && target && posts.length > 0 && <Aside asideKey={target} />}
         <Pagination posts={posts} loading={loading} />

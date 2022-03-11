@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router';
 
 import * as S from './style';
 
-const SearchBar = () => {
+type loading = {
+  loading?: boolean;
+};
+
+const SearchBar = ({ loading }: loading) => {
   const [searchOption, setSearchOption] = useState('keyword');
   const [userInput, setUserInput] = useState('');
   const navigation = useNavigate();
@@ -21,7 +25,7 @@ const SearchBar = () => {
 
   const handleKeyboardControl = (event: any) => {
     if (event.keyCode === 13) {
-      navigation(`/search?option=${searchOption}&target=${userInput}`);
+      navigateToSearch();
     }
   };
 
@@ -51,6 +55,7 @@ const SearchBar = () => {
           placeholder="검색어를 입력하세요..."
           onChange={(e) => handleChangeInput(e)}
           onKeyUp={(event) => handleKeyboardControl(event)}
+          disabled={loading}
         />
         <S.SearchBarButton onClick={() => navigateToSearch()}>검색</S.SearchBarButton>
       </S.SearchBar>
