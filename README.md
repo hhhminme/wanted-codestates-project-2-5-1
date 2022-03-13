@@ -252,7 +252,8 @@ const ImpactTarget = ({ productName }: productType) => {
 
 그리고 이후 매핑 조건을 따진 후에는 페이지에 표시해주는 부분은 keyword 검색과 로직이 동일하여 정리하자면
 > image_url 또는 product_code 검색시 ➡️ 해당 하는 제품의 name을 찾는다. ➡️ 해당 제품의 name을 활용해 keyword 검색과 동일하게 페이지에 출력한다.
-```typescirpt
+
+```typescript
   // product_code 검색 시 숫자만 입력되도록 구현
   const regexCode = /^[0-9]+$/;
   //image_url 검색 시 영어-숫자의 형태만 입력되도록 구현
